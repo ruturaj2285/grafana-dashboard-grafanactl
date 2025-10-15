@@ -1,0 +1,56 @@
+name: Deploy Grafana Dashboard
+
+on:
+  push:
+    branches:
+      - main
+      - tom/github-actions
+    paths:
+      - '*.json'         # Trigger only when .json dashboard files in root change
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install grafanactl v0.1.5
+        run: |
+          curl -L -o grafanactl-x86_64.tar.gz "https://github.com/grafana/grafanactl/releases/download/v0.1.5/grafanactl_Linux_x86_64.tar.gz"
+          tar -xzf grafanactl-x86_64.tar.gz
+          chmod +x grafanactl
+          sudo mv grafanactl /usr/local/bin/grafanactl
+          grafanactl --version
+
+      - name: Configure grafanactl
+        run: |
+          mkdir -p ~/.config/grafanactl
+          cat <<EOF > ~/.config/grafanactl/config.yaml
+          apiVersion: 1
+          contexts:
+            default:
+              grafana:
+                server: "${{ vars.GRAFANA_SERVER }}"
+                org-id: 1
+                # Recommended: Token-based authentication
+                token: "${{ secrets.GRAFANA_TOKEN }}"
+                # Or uncomment these lines for basic auth
+                # user: "admin"
+                # password: "grafana123"
+          current-context: default
+          EOF
+
+      - name: Deploy dashboards to Grafana
+        run: |
+          echo "Searching for dashboard JSON files in root directory..."
+          for file in ./*.json; do
+            if [ -f "$file" ]; then
+              echo "Deploying dashboard: $file ..."
+              grafanactl resources push dashboards --path "$file"
+            fi
+          done
+
+      - name: Done
+        run: echo "All dashboards deployed successfully to Grafana!"
