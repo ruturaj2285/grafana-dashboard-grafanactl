@@ -22,7 +22,7 @@
         "title": "Welcome 👋",
         "gridPos": { "h": 5, "w": 24, "x": 0, "y": 0 },
         "options": {
-          "content": "🚀 **Welcome to Simple Dashboard 1!**\n\nThis dashboard was deployed automatically using **grafanactl v0.1.5**.",
+          "content": "🚀 **Welcome to my Simple Dashboard 1!**\n\nThis dashboard was deployed automatically using **grafanactl v0.1.5**.",
           "mode": "markdown"
         }
       },
