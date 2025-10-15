@@ -1,0 +1,41 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "simple-dashboard2"
+  },
+  "spec": {
+    "uid": "simple-dashboard2",
+    "title": "Simple Demo Dashboard 2 (v0.1.5)",
+    "tags": ["demo", "grafanactl", "example2"],
+    "timezone": "browser",
+    "editable": true,
+    "schemaVersion": 39,
+    "refresh": "5m",
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "type": "text",
+        "title": "Deployment Status ✅",
+        "gridPos": { "h": 5, "w": 24, "x": 0, "y": 0 },
+        "options": {
+          "content": "🎉 **Simple Dashboard 2 deployed successfully!**\n\nThis was automatically created via GitHub Actions using `grafanactl v0.1.5`.",
+          "mode": "markdown"
+        }
+      },
+      {
+        "type": "text",
+        "title": "Info Panel ℹ️",
+        "gridPos": { "h": 5, "w": 24, "x": 0, "y": 5 },
+        "options": {
+          "content": "📊 You can later add panels for service uptime, alerts, or logs here.\n\n🛠️ Managed by your CI/CD Grafana automation.",
+          "mode": "markdown"
+        }
+      }
+    ]
+  }
+}
+
