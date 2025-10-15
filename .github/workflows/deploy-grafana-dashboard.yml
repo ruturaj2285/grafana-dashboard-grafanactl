@@ -13,7 +13,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: 🧾 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Install grafanactl v0.1.5
