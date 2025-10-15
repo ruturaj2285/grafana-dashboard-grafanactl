@@ -7,6 +7,7 @@ on:
       - tom/github-actions
     paths:
       - '*.json'         # Trigger only when .json dashboard files in root change
+  workflow_dispatch: {}    
 
 jobs:
   deploy:
