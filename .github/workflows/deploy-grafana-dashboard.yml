@@ -33,13 +33,13 @@ jobs:
           contexts:
             default:
               grafana:
-                server: "${{ vars.GRAFANA_SERVER }}"
+                server: "http://a575860d6905748dca23eeadfc1e24ec-322938893.ap-northeast-1.elb.amazonaws.com/"
                 org-id: 1
                 # Recommended: Token-based authentication
-                token: "${{ secrets.GRAFANA_TOKEN }}"
+                #token: "${{ secrets.GRAFANA_TOKEN }}"
                 # Or uncomment these lines for basic auth
-                # user: "admin"
-                # password: "grafana123"
+                 user: "admin"
+                 password: "grafana123"
           current-context: default
           EOF
 
