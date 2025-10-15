@@ -2,11 +2,10 @@ name: Deploy Grafana Dashboard
 
 on:
   push:
-    branches:
-      - main
-      - tom/github-actions
+    branches: [ main, tom/github-actions ]
     paths:
-      - '*.json'         # Trigger only when .json dashboard files in root change
+      - '**/*.json'                # any dashboard JSON
+      - '.github/workflows/**'     # pipeline/workflow edits
   workflow_dispatch: {}    
 
 jobs:
